@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Task Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        select {
+            width: 80%;
+            padding: 5px;
+            font-size: 14px;
+        }
+        select:focus {
+            outline: none;
+        }
+        .emoji-select {
+            font-size: 16px;
+            padding: 5px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weekly Task Monitoring</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Serial</th>
+                <th>Member Name</th>
+                <th>Week 1: Present?</th>
+                <th>Week 1: Post Online?</th>
+                <th>Week 1: Activities</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody id="taskTableBody">
+            <tr>
+                <td>1</td>
+                <td><input type="text" placeholder="Enter name" required></td>
+                <td>
+                    <select onchange="updateColor(this)">
+                        <option value="">Select...</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td>
+                    <select onchange="updateColor(this)">
+                        <option value="">Select...</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="emoji-select">
+                        <option value="">Select...</option>
+                        <option value="❤️">❤️ Love</option>
+                        <option value="😊">😊 Happy</option>
+                        <option value="😢">😢 Cry</option>
+                        <option value="😔">😔 Sad</option>
+                    </select>
+                </td>
+                <td><textarea rows="2" placeholder="Add comments..."></textarea></td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="addRow()">Add More Rows</button>
+
+    <script>
+        function updateColor(selectElement) {
+            if (selectElement.value === "Yes") {
+                selectElement.style.backgroundColor = "green";
+                selectElement.style.color = "white";
+            } else if (selectElement.value === "No") {
+                selectElement.style.backgroundColor = "red";
+                selectElement.style.color = "white";
+            } else {
+                selectElement.style.backgroundColor = "";
+                selectElement.style.color = "";
+            }
+        }
+
+        function addRow() {
+            const tableBody = document.getElementById("taskTableBody");
+            const rowCount = tableBody.rows.length;
+            const newRow = tableBody.insertRow();
+
+            newRow.innerHTML = `
+                <td>${rowCount + 1}</td>
+                <td><input type="text" placeholder="Enter name" required></td>
+                <td>
+                    <select onchange="updateColor(this)">
+                        <option value="">Select...</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td>
+                    <select onchange="updateColor(this)">
+                        <option value="">Select...</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="emoji-select">
+                        <option value="">Select...</option>
+                        <option value="❤️">❤️ Love</option>
+                        <option value="😊">😊 Happy</option>
+                        <option value="😢">😢 Cry</option>
+                        <option value="😔">😔 Sad</option>
+                    </select>
+                </td>
+                <td><textarea rows="2" placeholder="Add comments..."></textarea></td>
+            `;
+        }
+    </script>
+</body>
+</html>
